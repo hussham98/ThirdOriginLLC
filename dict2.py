@@ -1,22 +1,15 @@
 class Dict2:
     def __init__(self):
-        self.keys = []
-        self.values = []
-
-    def __setitem__(self, key, value):
-        if key not in self.keys:
-            self.keys.append(key)
-            self.values.append(value)
-        else:
-            idx = self.keys.index(key)
-            self.values[idx] = value
+        self.data = {}
 
     def __getitem__(self, key):
-        if key not in self.keys:
+        if key not in self.data:
             raise KeyError(f"Key '{key}' not found")
-        else:
-            idx = self.keys.index(key)
-            return self.values[idx]
+        return self.data[key]
+
+    def __setitem__(self, key, value):
+        self.data[key] = value
 
     def __iter__(self):
-        return iter(self.keys)
+        return iter(self.data)
+        
